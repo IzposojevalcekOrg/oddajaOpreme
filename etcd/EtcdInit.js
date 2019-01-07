@@ -1,12 +1,14 @@
+const uuidv4 = require('uuid/v4');
 const _ = require("lodash");
 const Etcd = require("node-etcd");
 const etcdUrls = process.env.ETCD_URL || "192.168.99.100:2379";
 const etcd = new Etcd(etcdUrls);
 
+const serviceId = uuidv4();
 const version = process.env.VERSION || "v1";
 const environment = process.env.ENVIRONMENT || "prod";
 
-const root = `/tenants/${environment}/${version}/`;
+const root = `/leasing/${environment}/${version}/`;
 
 const defaultConfig = require("../default-config.json");
 // Get default configuration from env and default-config.json
@@ -14,6 +16,20 @@ var config = {
     "equipmentEnabled": process.env.ETCD_EQUIPMENTENABLED == "true" ||
         defaultConfig[environment][version]["equipmentEnabled"] || false,
 };
+
+
+function registerService() {
+    etcd.set(`${root}routes/${serviceId}`,
+        JSON.stringify({
+            hostname: process.env.HOST,
+            port: process.env.HOST_PORT,
+        }), {
+            ttl: 8
+        }
+    );
+    setTimeout(registerService, 5000);
+}
+registerService();
 
 global.getServiceUrl = function (name, env, ver, callback) {
     if (_.get(config, ["services", name, env, ver])) {

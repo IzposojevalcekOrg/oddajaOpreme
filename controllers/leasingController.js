@@ -1,5 +1,4 @@
 var tenantModel = require('../models/leasingModel.js');
-var factory = require('../models/factory.js');
 const request = require("request");
 const promise = require("request-promise");
 
@@ -162,17 +161,4 @@ module.exports = {
         });
     },
 
-    generateDummies: function (req, res) {
-        var num = req.body.num;
-        factory(num);
-        tenantModel.find(function (err, tenants) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when getting tenant.',
-                    error: err
-                });
-            }
-            return res.json(tenants);
-        });
-    }
 };

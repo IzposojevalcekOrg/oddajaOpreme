@@ -12,7 +12,7 @@ router.get('/', leasingController.list);
  */
 router.get('/:id', leasingController.show);
 
-router.post('/generateDummies', leasingController.generateDummies);
+
 /*
  * POST
  */
