@@ -21,8 +21,8 @@ router.post('/', leasingController.create);
 /*
  * BORROW/RETURN
  */
-router.put('/borrow/:id', leasingController.borrow);
-router.put('/return/:id', leasingController.return);
+router.put('/borrow/:id', leasingController.checkEquipment, leasingController.checkTenant, leasingController.borrow);
+router.put('/return/:id', leasingController.checkEquipment, leasingController.checkTenant, leasingController.return);
 
 /*
  * REMOVE POSTING
