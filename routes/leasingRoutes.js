@@ -14,17 +14,18 @@ router.get('/:id', leasingController.show);
 
 
 /*
- * POST
+ * ADD POSTING
  */
 router.post('/', leasingController.create);
 
 /*
- * PUT
+ * BORROW/RETURN
  */
-router.put('/:id', leasingController.update);
+router.put('/borrow/:id', leasingController.borrow);
+router.put('/return/:id', leasingController.return);
 
 /*
- * DELETE
+ * REMOVE POSTING
  */
 router.delete('/:id', leasingController.remove);
 

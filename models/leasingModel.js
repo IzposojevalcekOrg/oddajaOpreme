@@ -3,16 +3,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var tenantSchema = new Schema({
-	'name': {
-		type: String,
+	'item': {
+		type: Schema.Types.ObjectId,
 		required: true,
-	},
-    'description': {
-        type: String
-    },
-	'created': {
-		type: Date,
-		default: Date.now
 	},
 	'expiry': {
 		type: Date,
@@ -27,10 +20,6 @@ var tenantSchema = new Schema({
 		required: true,
 		default: null
 	},
-
-	'price': {
-		type: Number
-	}
 });
 
-module.exports = mongoose.model('item', tenantSchema);
+module.exports = mongoose.model('borrowEntry', tenantSchema);

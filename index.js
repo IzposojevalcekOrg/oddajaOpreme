@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(baseUrl, require("./routes/leasingRoutes"));
 
 // Leave here for easy checking if the app is running.
-app.get('/', (req, res) => res.send('<h1> Tenants API running!</h1>'));
+app.get('/', (req, res) => res.send('<h1> Leasing API running!</h1>'));
 
 // Check configuration
 app.get('/etcd', (req, res) => res.send(JSON.stringify(config)));
