@@ -16,7 +16,7 @@ let checkTenant = function (req, res, next) {
         request(url+"/" + id, function (error, response, body) {
             if (error) return res.status(500).send("Internal server error. Code: 374");
             if (response.statusCode == 200) return next();
-            return res.status(400).send("Equipment doesn't exist");
+            return res.status(400).send("Tenant doesn't exist");
         });
     });
 };
@@ -32,9 +32,10 @@ let checkEquipment = function (req, res, next) {
         let url = `http://${_url}`;
 
         request(url+"/" + id, function (error, response, body) {
+            console.log("Reponse: ", response);
             if (error) return res.status(500).send("Internal server error. Code: 375");
             if (response.statusCode == 200) return next();
-            return res.status(400).send("Equipment doesn't exist");
+            return res.status(400).send("Equipment doesn't exist: " +  id);
         });
     });
 };
@@ -91,13 +92,13 @@ module.exports = {
         leasing.findOne({_id: id}, function (err, lease) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when getting tenant',
+                    message: 'Error when getting lease',
                     error: err
                 });
             }
             if (!lease) {
                 return res.status(404).json({
-                    message: 'No such tenant'
+                    message: 'No such lease'
                 });
             }
             let date = new Date();
@@ -124,13 +125,13 @@ module.exports = {
         leasing.findOne({_id: id}, function (err, lease) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when getting tenant',
+                    message: 'Error when getting lease',
                     error: err
                 });
             }
             if (!lease) {
                 return res.status(404).json({
-                    message: 'No such tenant'
+                    message: 'No such lease'
                 });
             }
 
