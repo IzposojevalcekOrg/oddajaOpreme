@@ -38,7 +38,7 @@ spec:
               value: etcd:2379
             - name: VERSION
               value: v1
-          image: mkoplan/leasing:0.0.3
+          image: mkoplan/leasing:0.0.4
           name: leasing
           ports:
             - containerPort: 8080
