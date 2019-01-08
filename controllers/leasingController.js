@@ -153,10 +153,10 @@ module.exports = {
 
     remove: function (req, res) {
         var id = req.params.id;
-        leasing.findByIdAndRemove(id, function (err, tenant) {
+        leasing.findByIdAndRemove(id, function (err, lease) {
             if (err) {
                 return res.status(500).json({
-                    message: 'Error when deleting the tenant.',
+                    message: 'Error when deleting the lease.',
                     error: err
                 });
             }
