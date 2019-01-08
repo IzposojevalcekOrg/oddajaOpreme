@@ -25,7 +25,7 @@ spec:
             - name: HOST
               value: leasing
             - name: HOST_PORT
-              value: 8080
+              value: "8080"
             - name: DB_URI
               value: mongo:27017
             - name: DB_USER
